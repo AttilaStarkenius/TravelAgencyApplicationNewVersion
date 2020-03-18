@@ -1,0 +1,141 @@
+﻿@{
+    ViewBag.Title = "Hotels in the selected city";
+
+    Layout = "~/Views/Shared/_myLayoutPage.cshtml";
+}
+
+@model TravelAgencyApplicationNewVersion.ViewModels.SearchIndexViewModel
+
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Airline)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArrivalCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArrivalTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartureCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartureTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FlightId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HotelId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HotelName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+    @foreach (var hotel in Model.hotelsCity)
+            {
+
+        <tr>
+            
+            <td>
+                    @Html.DisplayFor(modelItem => Model.Airline)
+                </td>
+            
+            <td>
+                    @Html.DisplayFor(modelItem => Model.ArrivalCity)
+                </td>
+            
+            <td>
+                    @Html.DisplayFor(modelItem => Model.ArrivalTime)
+                </td>
+            <th>
+                @Html.DisplayFor(modelItem => hotel.City)
+            </th>
+            
+            <td>
+                    @Html.DisplayFor(modelItem => Model.DepartureCity)
+                </td>
+            
+            <td>
+                    @Html.DisplayFor(modelItem => Model.DepartureTime)
+                </td>
+            
+            <td>
+                    @Html.DisplayFor(modelItem => Model.FlightId)
+                </td>
+            <th>
+                @Html.DisplayFor(modelItem => hotel.HotelId)
+            </th>
+            <th>
+                @Html.DisplayFor(modelItem => hotel.HotelName)
+            </th>
+            <th>
+                @Html.DisplayFor(modelItem => hotel.Price)
+            </th>
+            <td>
+                
+            <td>@Html.ActionLink("Book", "LoginOrRegisterHotel", "Book", new { ID = hotel.HotelId })</td>
+
+            
+        </tr>       
+
+
+
+    }
+        
+</table>
+
+
+@foreach (var hotel in Model.hotelsCity)
+{
+@if (hotel.City == "Moscow")
+    {
+
+    <img src="~/images/Moscow.jpg"         
+         alt="Moscow"
+         asp-append-version="true" />
+
+    }
+
+    @if (hotel.City == "London")
+    {
+
+        <img src="~/images/London.jpg"
+             alt="London"
+             asp-append-version="true" />
+
+    }
+
+    @if (hotel.City == "New York")
+    {
+
+        <img src="~/images/NewYork.jpg"
+             alt="New York"
+             asp-append-version="true" />
+
+    }
+}
+
+
+
+
+@section footer{
+    <p class="lead">
+        &copy 2017 Attila Starkenius
+    </p>
+}

@@ -1,0 +1,144 @@
+﻿@model TravelAgencyApplicationNewVersion.ViewModels.BookViewModel
+
+
+@{
+    Layout = "~/Views/Shared/_myLayoutPage.cshtml";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.flight.Airline)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.flight.ArrivalCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.flight.ArrivalTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.flight.DepartureCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.flight.DepartureTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.flight.FlightId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.flight.FlightPrice)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => Model.flight.Airline)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => Model.flight.ArrivalCity)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => Model.flight.ArrivalTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.flight.DepartureCity)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => Model.flight.DepartureTime)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => Model.flight.FlightId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.flight.FlightPrice)
+            </td>
+            <td>
+        </tr>
+
+        @foreach (var flight in Model.flightsArrivalDate)
+            {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => flight.Airline)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => flight.ArrivalCity)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => flight.ArrivalTime)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => flight.DepartureCity)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => flight.DepartureTime)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => flight.FlightId)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => Model.FlightPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.TotalPrice)
+                </td>
+
+                @*<td>@Html.ActionLink("Book", "LoginOrRegister", "Book", new { ID = flight.FlightId })</td>*@
+
+            </tr>
+
+        }
+
+    </tbody>
+</table>
+
+<tr>
+
+    <td>
+        You have chosen the seat number: @Html.DisplayFor(modelItem => Model.seatDetails)
+        in flight from city: @Html.DisplayFor(modelItem => Model.flight.DepartureCity)
+        with departure time: @Html.DisplayFor(modelItem => Model.flight.DepartureTime)
+        to city: @Html.DisplayFor(modelItem => Model.flight.ArrivalCity)
+        with arrival time: @Html.DisplayFor(modelItem => Model.flight.ArrivalTime)
+        and return flight with the seat number: @Html.DisplayFor(modelItem => Model.ReturnFlightSeatId)
+        from city: @Html.DisplayFor(modelItem => Model.flightsArrivalDate.First().DepartureCity)
+        with departure time: @Html.DisplayFor(modelItem => Model.flightsArrivalDate.First().DepartureTime)
+        to city: @Html.DisplayFor(modelItem => Model.flightsArrivalDate.First().ArrivalCity)
+        with arrival time: @Html.DisplayFor(modelItem => Model.flightsArrivalDate.First().ArrivalTime)
+        and with the total price: @Html.DisplayFor(modelItem => Model.flight.FlightPrice)
+    </td>
+
+</tr>
+
+
+
+@foreach (var seat in Model.seatDetails)
+{
+
+<td>@Html.ActionLink("Book", "ConfirmBooking", "Book", new { ReturnFlightSeatIdID = Model.ReturnFlightSeatId, ID = seat.SeatId, flightPrice = Model.flight.FlightPrice }, new { @class = "btn btn-success btn-lg" })</td>
+
+<td>@Html.ActionLink("Add hotel to flight booking?", "BookRoom", "Book", new { ReturnFlightSeatIdID = Model.ReturnFlightSeatId, flightID = Model.flight.FlightId, ID = seat.SeatId, flightPrice = Model.flight.FlightPrice }, new { @class = "btn" })</td>
+
+}
+
+
+
+@section footer{
+    <p class="lead">
+        &copy 2017 Attila Starkenius
+    </p>
+}

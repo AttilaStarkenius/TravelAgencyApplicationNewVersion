@@ -1,0 +1,49 @@
+﻿@model TravelAgencyApplicationNewVersion.ViewModels.BookViewModel
+
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    Layout = "~/Views/Shared/_myLayoutPage.cshtml";
+}
+
+
+<tr>
+
+    <td>
+        Hello @UserManager.GetUserName(User)! 
+        You have chosen a check-out date that is the same
+        or earlier than the check-in date. You have to 
+        choose a check-out date that is at least one day
+        later than the check-in date.
+    </td>
+
+    @*<td>@Html.ActionLink("Go back to choosing Check-Out Date", "ChooseCheckOutDate", "Book"@*, new { ID = room.RoomId })</td>*@
+    
+</tr>
+
+@using (Html.BeginForm("ChooseCheckOutDate", "Book", FormMethod.Post, new { id = "TheForm" }))
+{
+    <div class="container">
+        <div class="row">
+            <div>               
+
+                    <input id="RoomId" name="RoomId" type="hidden" value=@Model.RoomId>
+
+                    <input id="roomDetails" name="roomDetails" type="hidden" value=@Model.roomDetails>
+
+                    <input id="DepartureTime" name="DepartureTime" type="hidden" value=@Model.DepartureTime>
+
+                    <input id="ArrivalTime" name="ArrivalTime" type="hidden" value=@Model.ArrivalTime>
+
+                </div>
+                <button type="submit">Go back to choosing Check-Out Date</button>
+            </div>
+        </div>
+   
+}
+
+@section footer{
+    <p class="lead">
+        &copy 2017 Attila Starkenius
+    </p>
+}

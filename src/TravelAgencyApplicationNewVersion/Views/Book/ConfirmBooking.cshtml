@@ -1,0 +1,26 @@
+﻿@model System.Threading.Tasks.Task
+
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    Layout = "~/Views/Shared/_myLayoutPage.cshtml";
+}
+
+
+<tr>
+
+    <td>
+        Hello @UserManager.GetUserName(User)! Your booking has been confirmed. 
+    </td>
+
+    <td>@Html.ActionLink("View all your bookings", "ViewBookings", "Book", new { Email = UserManager.GetUserName(User) })</td>
+
+
+</tr>
+
+
+@section footer{
+    <p class="lead">
+        &copy 2017 Attila Starkenius
+    </p>
+}

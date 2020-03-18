@@ -1,0 +1,67 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using TravelAgencyApplicationNewVersion.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"></script>
+           
+</head>
+<body>
+
+
+    @if (User.IsInRole("Administrator"))
+    {
+
+        <a asp-controller="Administration" asp-action="Index">View all bookings</a>
+
+    }
+
+
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <form asp-area="" asp-controller="Login" asp-action="LogOff" method="post" id="logoutForm" class="navbar-left">
+            <ul class="nav navbar-nav navbar-left">
+                <li>
+                    Hello @UserManager.GetUserName(User)!
+                </li>
+                <li>
+                    <button type="submit" class="btn btn-link navbar-btn navbar-link">Log off</button>
+                </li>
+            </ul>
+        </form>
+    }
+    else
+    {
+        <ul class="nav navbar-nav navbar-right">
+            <li><a asp-area="" asp-controller="Login" asp-action="Login">Log in</a></li>
+        </ul>
+    }
+    
+    <header class="page-header">
+        <h1>Economic Travel</h1>
+    </header>
+
+    <div class="navbar-collapse collapse" style="background-color:green"> 
+        <ul class="nav navbar-nav">
+            <li><a style="color:yellow" asp-area="" asp-controller="Search" asp-action="Index">Search</a></li>
+            <li><a style="color:yellow" asp-area="" asp-controller="Login" asp-action="Index">Log in</a></li>
+        </ul>
+        
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+    <footer class="panel-footer">
+        @RenderSection("footer", true)
+    </footer>
+</body>
+</html>

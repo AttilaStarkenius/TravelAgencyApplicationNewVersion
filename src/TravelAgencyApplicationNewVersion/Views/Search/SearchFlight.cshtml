@@ -1,0 +1,306 @@
+﻿@{
+    ViewBag.Title = "Flights with selected arrival date";
+
+    Layout = "~/Views/Shared/_myLayoutPage.cshtml";
+}
+
+@model TravelAgencyApplicationNewVersion.ViewModels.SearchIndexViewModel
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Airline)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArrivalCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArrivalTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartureCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartureTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FlightId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FlightPrice)
+            </th> 
+            <th>
+                @Html.DisplayNameFor(model => model.TotalPrice)
+            </th>             
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var flight in Model.flightsDepartureDate)
+            {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => flight.Airline)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => flight.ArrivalCity)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => flight.ArrivalTime)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => flight.DepartureCity)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => flight.DepartureTime)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => flight.FlightId)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => flight.FlightPrice)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => Model.FlightPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.TotalPrice)
+                </td>
+
+                <td>@Html.ActionLink("Book", "LoginOrRegister", "Book", new { ID = flight.FlightId, flightPrice = Model.TotalPrice@*, returnFlightID = Model.flightsArrivalDate.First().FlightId*@ })</td>
+
+                <input id="returnFlightID" name="returnFlightID" value="Model.flightsArrivalDate.First().FlightId" type="hidden" /> 
+
+            </tr>
+
+        }
+
+        @if (!Model.flightsArrivalDate.Count.Equals(0)) { 
+        @foreach (var flight in Model.flightsArrivalDate)
+            {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => flight.Airline)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => flight.ArrivalCity)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => flight.ArrivalTime)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => flight.DepartureCity)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => flight.DepartureTime)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => flight.FlightId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.FlightPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.TotalPrice)
+                </td>
+
+                @*<td>@Html.ActionLink("Book", "LoginOrRegister", "Book", new { ID = flight.FlightId })</td>*@
+
+            </tr>
+
+        }
+
+        }
+
+
+    </tbody>
+</table>
+
+<div>This booking for @Model.numberOfAdults adults and @Model.numberOfChildren children cost @Model.TotalPrice United states dollars!</div>
+
+
+
+@foreach (var flight in Model.flightsDepartureDate)
+{
+    <div>Image of departure city @flight.DepartureCity: </div>
+    @if (flight.DepartureCity == "Stockholm")
+    {
+
+        <img src="~/images/Stockholm.jpg"
+             alt="Stockholm"
+             asp-append-version="true" />
+
+    }
+
+    @if (flight.DepartureCity == "Los Angeles")
+    {
+
+        <img src="~/images/LosAngeles.jpg"
+             alt="Los Angeles"
+             asp-append-version="true" />
+
+    }
+
+    @if (flight.DepartureCity == "Moscow")
+    {
+
+        <img src="~/images/Moscow.jpg"
+             alt="Moscow"
+             asp-append-version="true" />
+
+    }
+
+    @if (flight.DepartureCity == "Miami")
+    {
+
+        <img src="~/images/Miami.jpg"
+             alt="Miami"
+             asp-append-version="true" />
+
+    }
+
+    @if (flight.DepartureCity == "Berlin")
+    {
+
+        <img src="~/images/Berlin.jpg"
+             alt="Berlin"
+             asp-append-version="true" />
+
+    }
+
+    @if (flight.DepartureCity == "Kiev")
+    {
+
+        <img src="~/images/Kiev.jpg"
+             alt="Kiev"
+             asp-append-version="true" />
+
+    }
+
+    @if (flight.DepartureCity == "Delhi")
+    {
+
+        <img src="~/images/Delhi.jpg"
+             alt="Delhi"
+             asp-append-version="true" />
+
+    }
+    
+
+}
+
+@*@if((!Model.flightsArrivalDate.Count.Equals(0))){ 
+@foreach (var flight in Model.flightsArrivalDate)
+{
+    <div>Image of arrival city @flight.ArrivalCity: </div>
+    @if (flight.ArrivalCity == "Moscow")
+    {
+
+        <img src="~/images/Moscow.jpg"
+             alt="Moscow"
+             asp-append-version="true" />
+
+    }
+
+    @if (flight.ArrivalCity == "London")
+    {
+
+        <img src="~/images/London.jpg"
+             alt="London"
+             asp-append-version="true" />
+
+    }
+
+    @if (flight.ArrivalCity == "New York")
+    {
+
+        <img src="~/images/NewYork.jpg"
+             alt="New York"
+             asp-append-version="true" />
+
+    }
+
+    @if (flight.ArrivalCity == "Beijing")
+    {
+
+        <img src="~/images/Beijing.jpg"
+             alt="Beijing"
+             asp-append-version="true" />
+
+    }
+
+    @if (flight.ArrivalCity == "Helsinki")
+    {
+
+        <img src="~/images/Helsinki.jpg"
+             alt="Helsinki"
+             asp-append-version="true" />
+
+    }
+
+    @if (flight.ArrivalCity == "Kansas City")
+    {
+
+        <img src="~/images/KansasCity.jpg"
+             alt="Kansas City"
+             asp-append-version="true" />
+
+    }
+
+    @if (flight.ArrivalCity == "Madrid")
+    {
+
+        <img src="~/images/Madrid.jpg"
+             alt="Madrid"
+             asp-append-version="true" />
+
+    }
+
+    @if (flight.ArrivalCity == "Paris")
+    {
+
+        <img src="~/images/Paris.jpg"
+             alt="Paris"
+             asp-append-version="true" />
+
+    }
+
+    @if (flight.ArrivalCity == "Sao Paulo")
+    {
+
+        <img src="~/images/SaoPaulo.jpg"
+             alt="Sao Paulo"
+             asp-append-version="true" />
+
+    }
+
+}
+
+}*@
+
+
+@section footer{
+    <p class="lead">
+        &copy 2017 Attila Starkenius
+    </p>
+}
+
+
+
+

@@ -1,0 +1,50 @@
+﻿@model TravelAgencyApplicationNewVersion.ViewModels.SearchIndexViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_myLayoutPage.cshtml";
+}
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                CustomerId
+            </th>
+            <th>
+                ReservationId
+            </th>
+            <th>
+                TotalPrice
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        </table>
+
+        @foreach (var item in Model.reservationItems)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReservationId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                </td>
+                <td>
+                    <a asp-controller="Book" asp-action="Index" asp-route-id="@item.ReservationId">Change</a> |
+                </td>
+            </tr>
+        }
+
+
+
+        @section footer{
+            <p class="lead">
+                &copy 2017 Attila Starkenius
+            </p>
+        }

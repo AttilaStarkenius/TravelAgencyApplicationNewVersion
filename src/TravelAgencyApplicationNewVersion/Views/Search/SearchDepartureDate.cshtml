@@ -1,0 +1,125 @@
+﻿@{
+    ViewBag.Title = "Flights with selected departure date";
+
+    Layout = "~/Views/Shared/_myLayoutPage.cshtml";
+}
+
+@model TravelAgencyApplicationNewVersion.ViewModels.SearchIndexViewModel
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Airline)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArrivalCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArrivalTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartureCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartureTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FlightId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HotelId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HotelName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+
+        @foreach (var flight in Model.flightsDepartureDate)
+            {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => flight.Airline)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => Model.flight.Airline)
+                    </td>*@
+                @*<td>
+                        @Html.DisplayFor(modelItem => Model.Airline)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => flight.ArrivalCity)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => Model.flight.ArrivalCity)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => flight.ArrivalTime)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => Model.flight.ArrivalTime)
+                    </td>*@
+                <th>
+                    @Html.DisplayFor(modelItem => Model.City)
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => flight.DepartureCity)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => Model.flight.DepartureCity)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => flight.DepartureTime)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => Model.flight.DepartureTime)
+                    </td>*@
+                @*<td>
+                        @Html.DisplayFor(modelItem => Model.flight)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => flight.FlightId)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => Model.flight.FlightId)
+                    </td>*@
+                <th>
+                    @Html.DisplayFor(modelItem => Model.HotelId)
+                </th>
+                <th>
+                    @Html.DisplayFor(modelItem => Model.HotelName)
+                </th>
+                <th>
+                    @Html.DisplayFor(modelItem => Model.Price)
+                </th>
+                <td>
+                    @*<a asp-controller="Search" asp-action="Redirect" asp-route-id="@Model.SeatId">Book</a> |*@
+                    @*@Html.ActionLink("Book", "Redirect", Model)*@
+                <td>@Html.ActionLink("Book", "LoginOrRegister", "Book", new { ID = flight.FlightId })</td>
+
+                
+            </tr>
+
+        }
+    </tbody>
+</table>
+
+
+@section footer{
+    <p class="lead">
+        &copy 2017 Attila Starkenius
+    </p>
+}

@@ -1,0 +1,199 @@
+﻿@{
+    ViewBag.Title = "Flights with selected arrival date";
+
+    Layout = "~/Views/Shared/_myLayoutPage.cshtml";
+}
+
+@model TravelAgencyApplicationNewVersion.ViewModels.SearchIndexViewModel
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Airline)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArrivalCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArrivalTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartureCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartureTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FlightId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FlightPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HotelId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HotelName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+
+        @foreach (var flight in Model.flightsArrivalDate)
+            {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => flight.Airline)
+                </td>
+                
+                <td>
+                    @Html.DisplayFor(modelItem => flight.ArrivalCity)
+                </td>
+                
+                <td>
+                    @Html.DisplayFor(modelItem => flight.ArrivalTime)
+                </td>
+                
+                <th>
+                    @Html.DisplayFor(modelItem => Model.City)
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => flight.DepartureCity)
+                </td>
+                
+                <td>
+                    @Html.DisplayFor(modelItem => flight.DepartureTime)
+                </td>
+                
+                <td>
+                    @Html.DisplayFor(modelItem => flight.FlightId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => flight.FlightPrice)
+                </td>
+                
+                <th>
+                    @Html.DisplayFor(modelItem => Model.HotelId)
+                </th>
+                <th>
+                    @Html.DisplayFor(modelItem => Model.HotelName)
+                </th>
+                <th>
+                    @Html.DisplayFor(modelItem => Model.Price)
+                </th>
+                <td>
+
+                <td>@Html.ActionLink("Book", "LoginOrRegister", "Book", new { ID = flight.FlightId })</td>
+                                                
+            </tr>
+
+        }
+    </tbody>
+</table>
+
+
+@foreach (var flight in Model.flightsArrivalDate)
+{
+    @if (flight.ArrivalCity == "Moscow")
+    {
+
+        <img src="~/images/Moscow.jpg"
+             alt="Moscow"
+             asp-append-version="true" />
+
+    }
+
+    @if (flight.ArrivalCity == "London")
+    {
+
+        <img src="~/images/London.jpg"
+             alt="London"
+             asp-append-version="true" />
+
+    }
+
+    @if (flight.ArrivalCity == "New York")
+    {
+
+        <img src="~/images/NewYork.jpg"
+             alt="New York"
+             asp-append-version="true" />
+
+    }
+
+    @if (flight.ArrivalCity == "Beijing")
+    {
+
+        <img src="~/images/Beijing.jpg"
+             alt="Beijing"
+             asp-append-version="true" />
+
+    }
+
+    @if (flight.ArrivalCity == "Helsinki")
+    {
+
+        <img src="~/images/Helsinki.jpg"
+             alt="Helsinki"
+             asp-append-version="true" />
+
+    }
+
+    @if (flight.ArrivalCity == "Kansas City")
+    {
+
+        <img src="~/images/KansasCity.jpg"
+             alt="Kansas City"
+             asp-append-version="true" />
+
+    }
+
+    @if (flight.ArrivalCity == "Madrid")
+    {
+
+        <img src="~/images/Madrid.jpg"
+             alt="Madrid"
+             asp-append-version="true" />
+
+    }
+
+    @if (flight.ArrivalCity == "Paris")
+    {
+
+        <img src="~/images/Paris.jpg"
+             alt="Paris"
+             asp-append-version="true" />
+
+    }
+
+    @if (flight.ArrivalCity == "Sao Paulo")
+    {
+
+        <img src="~/images/SaoPaulo.jpg"
+             alt="Sao Paulo"
+             asp-append-version="true" />
+
+    }
+
+}
+
+
+@section footer{
+    <p class="lead">
+        &copy 2017 Attila Starkenius
+    </p>
+}
+
+

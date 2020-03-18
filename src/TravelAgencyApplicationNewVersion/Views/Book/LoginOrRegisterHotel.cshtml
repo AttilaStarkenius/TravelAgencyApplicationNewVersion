@@ -1,0 +1,84 @@
+﻿@using System.Collections.Generic
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Http.Authentication
+
+
+@model TravelAgencyApplicationNewVersion.ViewModels.LogInViewModel
+
+@inject SignInManager<ApplicationUser> SignInManager
+
+@{
+    Layout = "~/Views/Shared/_myLayoutPage.cshtml";
+}
+
+
+
+<tr>
+    <td>
+        @Html.DisplayFor(model => model.hotel.City)
+    </td>
+    <td>
+        @Html.DisplayFor(model => model.hotel.HotelId)
+    </td>
+    <td>
+        @Html.DisplayFor(model => model.hotel.HotelName)
+    </td>
+    <td>
+        @Html.DisplayFor(model => model.hotel.Price)
+    </td>
+    <td>
+        @Html.DisplayFor(model => model.hotel.RoomId)
+    </td>    
+</tr>
+
+
+
+@if (User.Identity.IsAuthenticated == false)
+{
+    <form asp-controller="Login" asp-action="LoginHotel" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+        <h4>Or login as an existing user.</h4>
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Email" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Password" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+        </div>
+
+
+
+        <input asp-for="hotel.HotelId" type="hidden" />
+
+
+        @TempData["ChosenHotel"] = @Model.hotel.HotelId
+
+        
+
+        <input id="HotelID" name="HotelID" type="hidden" value="@Model.hotel.HotelId" />
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" class="btn btn-default">Log in</button>                
+            </div>
+        </div>
+        <p>
+            <a asp-controller="Register" asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Register as a new user?</a>
+        </p>
+    </form>
+}
+
+@section footer{
+    <p class="lead">
+        &copy 2017 Attila Starkenius
+    </p>
+}

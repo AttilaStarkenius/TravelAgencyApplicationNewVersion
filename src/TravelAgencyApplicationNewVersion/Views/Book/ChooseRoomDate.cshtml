@@ -1,0 +1,200 @@
+﻿@model TravelAgencyApplicationNewVersion.ViewModels.BookViewModel
+
+
+@{
+    Layout = "~/Views/Shared/_myLayoutPage.cshtml";
+}
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.flight.Airline)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.flight.ArrivalCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.flight.ArrivalTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.flight.DepartureCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.flight.DepartureTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.flight.FlightId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => Model.flight.Airline)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => Model.flight.ArrivalCity)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => Model.flight.ArrivalTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.flight.DepartureCity)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => Model.flight.DepartureTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.flight.FlightId)
+            </td>
+            <td>
+        </tr>
+
+        @foreach (var flight in Model.flightsArrivalDate)
+            {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => flight.Airline)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => flight.ArrivalCity)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => flight.ArrivalTime)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => flight.DepartureCity)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => flight.DepartureTime)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => flight.FlightId)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => Model.FlightPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.TotalPrice)
+                </td>*@
+
+                @*<td>@Html.ActionLink("Book", "LoginOrRegister", "Book", new { ID = flight.FlightId })</td>*@
+
+            </tr>
+
+        }
+
+    </tbody>
+</table>
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.hotel.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.hotel.HotelId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.hotel.HotelName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.hotel.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.hotel.RoomId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>
+                @Html.DisplayFor(modelItem => Model.hotel.City)
+            </th>
+            <th>
+                @Html.DisplayFor(modelItem => Model.hotel.HotelId)
+            </th>
+            <th>
+                @Html.DisplayFor(modelItem => Model.hotel.HotelName)
+            </th>
+            <th>
+                @Html.DisplayFor(modelItem => Model.hotel.Price)
+            </th>
+            <th>
+                @Html.DisplayFor(modelItem => Model.roomDetails)
+            </th>
+            <td>
+        </tr>
+    </tbody>
+</table>
+
+
+    <h2>Choose Check-In date</h2>
+
+    @using (Html.BeginForm("ChooseCheckOutDate", "Book", FormMethod.Post, new { id = "TheForm" }))
+    {
+        <div class="container">
+            <div class="row">
+                <div>
+                    @Html.Label("", null, new { @class = "control-label col-xs-3" })
+                    <div class="col-xs-3">
+                        @Html.TextBoxFor(model => model.DepartureTime, new { @required = "required", type = "date"@*, ID = Model.RoomId, CheckInDate = Model.DepartureTime*@ })
+
+
+                        @*@Html.TextBoxFor(model => model.DepartureTime, new { @required = "required", type = "date", min = Model.DepartureTime })*@
+                    </div>
+
+
+                    @*@Html.HiddenFor(x => x.RoomId)
+
+                        @Html.HiddenFor(x => x.DepartureTime)*@
+
+
+                    <input id="RoomId" name="RoomId" type="hidden" value=@Model.RoomId>
+
+                    <input id="DepartureTime" name="DepartureTime" type="hidden" value=@Model.DepartureTime>
+
+
+                    <input id="roomDetails" name="roomDetails" type="hidden" value=@Model.roomDetails>
+
+                    <input id="FlightId" name="FlightId" type="hidden" value="@Model.flight.FlightId" />
+                    <input id="SeatId" name="SeatId" type="hidden" value="@Model.flight.SeatId" />
+                    <input id="FlightPrice" name="FlightPrice" type="hidden" value="@Model.flight.FlightPrice" />
+
+
+                    @*@Html.ActionLink("Choose Check-In date", "ChooseCheckOutDate", "Book", new { ID = Model.RoomId, CheckInDate = Model.DepartureTime })*@
+
+                    @*@Html.ActionLink("Choose Check-In date", "ChooseCheckOutDate", "Book", new { ID = Model.DepartureTime })*@
+
+                    <button type="submit">Choose Check-In date</button>
+                </div>
+            </div>
+        </div>
+        @*}*@
+
+    }
+
+
+    @section footer{
+        <p class="lead">
+            &copy 2017 Attila Starkenius
+        </p>
+    }

@@ -1,0 +1,65 @@
+﻿<link href="~/lib/datetimepicker/jquery.datetimepicker.css" rel="stylesheet" />
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/datetimepicker/jquery.datetimepicker.js"></script>
+
+<script type="text/javascript">
+
+
+    jQuery('#datetimepicker').datetimepicker();
+
+</script>
+
+@{
+    ViewBag.Title = "Search flights and hotels";
+
+    Layout = "~/Views/Shared/_myLayoutPage.cshtml";
+}
+
+@using TravelAgencyApplicationNewVersion.ViewModels
+
+@model TravelAgencyApplicationNewVersion.ViewModels.SearchIndexViewModel
+
+
+
+<h2>Choose hotel city</h2>
+
+@using (Html.BeginForm("SearchHotelCity", "Search", FormMethod.Post, new { id = "TheForm" }))
+{
+    <div class="container">
+        <div class="row">
+            <div>
+                @Html.DropDownListFor(m => m.City, Model.hotelCityItems)
+
+                <button type="submit">Search hotel city</button>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+<h2>Choose flight arrival date</h2>
+
+@using (Html.BeginForm("SearchArrivalDate", "Search", FormMethod.Post, new { id = "TheForm" }))
+{
+    <div class="container">
+        <div class="row">
+            <div>
+                @Html.Label("", null, new { @class = "control-label col-xs-3" })
+                <div class="col-xs-3">
+                    @Html.TextBoxFor(model => model.ArrivalTime, new { type = "date" })
+                </div>
+                <button type="submit">Search arrival date</button>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+@section footer{
+    <p class="lead">
+        &copy 2017 Attila Starkenius
+    </p>
+}
+

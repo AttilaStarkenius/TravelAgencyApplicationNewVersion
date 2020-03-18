@@ -1,0 +1,119 @@
+﻿@model TravelAgencyApplicationNewVersion.ViewModels.BookViewModel
+
+
+@{
+    Layout = "~/Views/Shared/_myLayoutPage.cshtml";
+}
+
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.flight.Airline)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.flight.ArrivalCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.flight.ArrivalTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.flight.DepartureCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.flight.DepartureTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.flight.FlightId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HotelId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HotelName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => Model.flight.Airline)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => Model.flight.ArrivalCity)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => Model.flight.ArrivalTime)
+            </td>
+
+            <th>
+                @Html.DisplayFor(modelItem => Model.City)
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => Model.flight.DepartureCity)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => Model.flight.DepartureTime)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => Model.flight.FlightId)
+            </td>
+
+            <th>
+                @Html.DisplayFor(modelItem => Model.HotelId)
+            </th>
+            <th>
+                @Html.DisplayFor(modelItem => Model.HotelName)
+            </th>
+            <th>
+                @Html.DisplayFor(modelItem => Model.Price)
+            </th>
+            <td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+<form asp-controller="Book" asp-action="ChooseSeat" method="post" class="form-horizontal">
+    <select asp-for="SeatId"
+            asp-items="Model.seatsInFlight"></select>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" class="btn btn-default">Choose seat</button>
+        </div>
+    </div>
+</form>
+
+
+<tr>
+
+    <td>
+        @Html.DisplayFor(modelItem => Model.seatDetails)
+    </td>
+
+</tr>
+
+
+
+
+@section footer{
+    <p class="lead">
+        &copy 2017 Attila Starkenius
+    </p>
+}

@@ -1,0 +1,116 @@
+﻿@model TravelAgencyApplicationNewVersion.ViewModels.SearchIndexViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_myLayoutPage.cshtml";
+}
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.reservationDetails.ArrivalTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.reservationDetails.BookingDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.reservationDetails.Breakfast)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.reservationDetails.DepartureTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.reservationDetails.FirstClass)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.reservationDetails.Insurance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.reservationDetails.InvoiceExpiryDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.reservationDetails.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.reservationDetails.ReservationDetailsId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoomId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SeatId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.reservationDetails.Email)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+
+        @foreach (var item in Model.reservationDetailsItems)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArrivalTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Breakfast)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DepartureTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstClass)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Insurance)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InvoiceExpiryDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReservationDetailsId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SeatId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+
+                <td>
+
+                    <a asp-action="Edit" asp-route-id="@item.ReservationDetailsId">Edit</a> |
+
+                    <a asp-action="Delete" asp-route-id="@item.ReservationDetailsId">Delete</a>
+
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+
+
+
+@section footer{
+    <p class="lead">
+        &copy 2017 Attila Starkenius
+    </p>
+}
+
+
